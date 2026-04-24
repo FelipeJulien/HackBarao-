@@ -1,0 +1,53 @@
+/* ========================================
+   TAILWIND CSS v4
+   ======================================== */
+@import "tailwindcss";
+
+/* ========================================
+   DESIGN TOKENS / VARIÁVEIS GLOBAIS
+   ======================================== */
+
+:root {
+  /* Paleta de cores */
+  --cor-primaria: #1a1a2e;
+  --cor-secundaria: #16213e;
+  --cor-destaque: #e94560;
+  --cor-destaque-hover: #ff6b81;
+  --cor-texto: #f0f0f0;
+  --cor-texto-suave: #a8a8b3;
+  --cor-fundo-overlay: rgba(10, 10, 30, 0.55);
+  --cor-vidro: rgba(255, 255, 255, 0.08);
+  --cor-borda-vidro: rgba(255, 255, 255, 0.15);
+
+  /* VR / Meta Quest */
+  --cor-vr-brilho: rgba(56, 182, 255, 0.6);
+  --cor-vr-brilho-suave: rgba(56, 182, 255, 0.15);
+
+  /* Tipografia */
+  --fonte-principal: 'Outfit', sans-serif;
+
+  /* Transições */
+  --transicao-rapida: 0.25s ease;
+  --transicao-media: 0.4s ease;
+  --transicao-lenta: 0.8s ease;
+}
+
+/* ========================================
+   RESET E ESTILOS GLOBAIS
+   ======================================== */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--fonte-principal);
+  background-color: #000;
+  color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
