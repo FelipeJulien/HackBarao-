@@ -41,7 +41,7 @@ function App() {
         whileTap={{ scale: 0.95 }}
         title="Repetir animação VR"
       >
-        🥽 Replay VR
+        🥽 VR
       </motion.button>
     </>
   )
