@@ -2,18 +2,8 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import questImg from './assets/Metaquestesemfundosemlente.webp'
 
-/**
- * VRIntro — Zoom na lente esquerda do Meta Quest 3 (sem fundo, sem lente).
- *
- * A imagem do óculos tem fundo e lentes transparentes, então a cozinha
- * desfocada aparece ATRAVÉS das aberturas. O zoom foca na lente esquerda,
- * e conforme avança o desfoque some e o óculos sai de frame.
- *
- * @param {Function} onComplete - Callback ao terminar
- */
 export default function VRIntro({ onComplete }) {
   const [fase, setFase] = useState('escuro')
-  // escuro → aparece → zoom → fim
 
   useEffect(() => {
     const tempos = [
@@ -28,7 +18,6 @@ export default function VRIntro({ onComplete }) {
     if (fase === 'fim' && onComplete) onComplete()
   }, [fase, onComplete])
 
-  // Centro da lente esquerda na imagem (~37% X, ~58% Y)
   const LENTE_ESQUERDA = '43% 48%'
 
   return (
@@ -40,7 +29,6 @@ export default function VRIntro({ onComplete }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
         >
-          {/* ═══════ CAMADA 1: Cozinha desfocada (visível através das lentes) ═══════ */}
           <motion.div
             className="absolute inset-0 z-[1]"
             style={{
@@ -63,7 +51,6 @@ export default function VRIntro({ onComplete }) {
             }
           />
 
-          {/* ═══════ CAMADA 2: Óculos (sem fundo, sem lente — zoom na lente esquerda) ═══════ */}
           <motion.div
             className="absolute inset-0 z-[2] flex items-center justify-center overflow-hidden"
             style={{ transformOrigin: fase === 'zoom' ? LENTE_ESQUERDA : 'center center' }}
@@ -93,7 +80,6 @@ export default function VRIntro({ onComplete }) {
             />
           </motion.div>
 
-          {/* ═══════ CAMADA 3: Brilho azul sutil na lente esquerda ═══════ */}
           <motion.div
             className="absolute z-[3] rounded-full pointer-events-none"
             style={{
@@ -114,7 +100,6 @@ export default function VRIntro({ onComplete }) {
             transition={{ duration: 1.8, ease: 'easeInOut' }}
           />
 
-          {/* Brilho lente direita (mais fraco) */}
           <motion.div
             className="absolute z-[3] rounded-full pointer-events-none"
             style={{
@@ -131,7 +116,6 @@ export default function VRIntro({ onComplete }) {
             transition={{ duration: 1.8, ease: 'easeInOut' }}
           />
 
-          {/* ═══════ Texto ═══════ */}
           <AnimatePresence>
             {fase === 'aparece' && (
               <motion.p
@@ -151,7 +135,6 @@ export default function VRIntro({ onComplete }) {
             )}
           </AnimatePresence>
 
-          {/* ═══════ Botão pular ═══════ */}
           <motion.button
             className="absolute bottom-5 right-5 z-[210] px-4 py-2 text-xs font-medium uppercase tracking-wider rounded-full cursor-pointer border select-none"
             style={{
