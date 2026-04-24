@@ -3,28 +3,9 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-}
-
-.fundo-cozinha {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('/cozinha.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.fundo-cozinha::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    var(--cor-fundo-overlay) 0%,
-    rgba(10, 10, 30, 0.35) 50%,
-    var(--cor-fundo-overlay) 100%
-  );
 }
 
 .conteudo-hero {
@@ -120,4 +101,29 @@
     padding: 0.85rem 2rem;
     font-size: 0.9rem;
   }
+}
+
+.botao-replay {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(56, 182, 255, 0.9);
+  background: rgba(10, 10, 30, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 182, 255, 0.3);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-replay:hover {
+  background: rgba(56, 182, 255, 0.15);
+  border-color: rgba(56, 182, 255, 0.6);
+  color: rgba(56, 182, 255, 1);
 }

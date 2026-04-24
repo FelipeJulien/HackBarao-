@@ -4,46 +4,50 @@ import VRIntro from './VRIntro'
 import './App.css'
 
 function App() {
-  const [introCompleta, setIntroCompleta] = useState(false)
+  const [introRodando, setIntroRodando] = useState(false)
+  const [vrJaRodou, setVrJaRodou] = useState(false)
+  const [introKey, setIntroKey] = useState(0)
 
   const handleIntroComplete = useCallback(() => {
-    setIntroCompleta(true)
+    setIntroRodando(false)
+    setVrJaRodou(true)
   }, [])
+
+  const handleReplay = () => {
+    setIntroRodando(true)
+    setIntroKey(prev => prev + 1)
+  }
+
+  const fundoAtual = vrJaRodou ? '/cozinha.png' : '/inicio.png'
 
   return (
     <>
-      {!introCompleta && <VRIntro onComplete={handleIntroComplete} />}
+      {introRodando && <VRIntro key={introKey} onComplete={handleIntroComplete} />}
 
-      <motion.main
+      <main
         className="pagina-principal"
-        initial={{ opacity: 0, filter: 'blur(20px)' }}
-        animate={
-          introCompleta
-            ? { opacity: 1, filter: 'blur(0px)' }
-            : { opacity: 0, filter: 'blur(20px)' }
-        }
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <motion.div
-          className="fundo-cozinha"
-          role="img"
-          aria-label="Cozinha moderna e sofisticada"
-          initial={{ scale: 1.1 }}
-          animate={introCompleta ? { scale: 1 } : { scale: 1.1 }}
-          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-        />
-      </motion.main>
+        style={{ backgroundImage: `url('${fundoAtual}')` }}
+      />
 
-      <motion.footer
-        className="rodape-flutuante"
-        initial={{ opacity: 0 }}
-        animate={introCompleta ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, delay: 1.3 }}
+      <footer className="rodape-flutuante">
+        © 2026 Hack Barão
+      </footer>
+
+      <motion.button
+        className="botao-replay"
+        onClick={handleReplay}
+        initial={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(56,182,255,0.5)' }}
+        whileTap={{ scale: 0.95 }}
+        title="Repetir animação VR"
       >
-        © 2026 Hack Barão Antigravidade
-      </motion.footer>
+        🥽 Replay VR
+      </motion.button>
     </>
   )
 }
 
 export default App
+
+
+

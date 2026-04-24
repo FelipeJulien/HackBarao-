@@ -9,14 +9,11 @@ export default function VRIntro({ onComplete }) {
     const tempos = [
       setTimeout(() => setFase('aparece'), 300),
       setTimeout(() => setFase('zoom'), 2200),
+      setTimeout(() => { if (onComplete) onComplete() }, 4200),
       setTimeout(() => setFase('fim'), 4600),
     ]
     return () => tempos.forEach(clearTimeout)
-  }, [])
-
-  useEffect(() => {
-    if (fase === 'fim' && onComplete) onComplete()
-  }, [fase, onComplete])
+  }, [onComplete])
 
   const LENTE_ESQUERDA = '43% 48%'
 
@@ -27,7 +24,7 @@ export default function VRIntro({ onComplete }) {
           key="vr-intro"
           className="fixed inset-0 z-[200] overflow-hidden bg-black"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.3 } }}
+          exit={{ opacity: 0, transition: { duration: 0 } }}
         >
           <motion.div
             className="absolute inset-0 z-[1]"
@@ -135,25 +132,7 @@ export default function VRIntro({ onComplete }) {
             )}
           </AnimatePresence>
 
-          <motion.button
-            className="absolute bottom-5 right-5 z-[210] px-4 py-2 text-xs font-medium uppercase tracking-wider rounded-full cursor-pointer border select-none"
-            style={{
-              color: 'rgba(56,182,255,0.5)',
-              background: 'rgba(255,255,255,0.04)',
-              borderColor: 'rgba(56,182,255,0.15)',
-            }}
-            onClick={() => setFase('fim')}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
-            whileHover={{
-              opacity: 1,
-              borderColor: 'rgba(56,182,255,0.4)',
-              color: 'rgba(56,182,255,0.8)',
-            }}
-            transition={{ delay: 0.8, duration: 0.4 }}
-          >
-            Pular ✕
-          </motion.button>
+
         </motion.div>
       )}
     </AnimatePresence>
