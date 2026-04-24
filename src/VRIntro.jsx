@@ -15,7 +15,7 @@ export default function VRIntro({ onComplete }) {
     return () => tempos.forEach(clearTimeout)
   }, [onComplete])
 
-  const LENTE_ESQUERDA = '43% 48%'
+  const CENTRO_LENTES = '50% 50%'
 
   return (
     <AnimatePresence>
@@ -50,11 +50,11 @@ export default function VRIntro({ onComplete }) {
 
           <motion.div
             className="absolute inset-0 z-[2] flex items-center justify-center overflow-hidden"
-            style={{ transformOrigin: fase === 'zoom' ? LENTE_ESQUERDA : 'center center' }}
-            initial={{ scale: 1, opacity: 0 }}
+            style={{ transformOrigin: CENTRO_LENTES }}
+            initial={{ scale: 0.8, opacity: 0 }}
             animate={
               fase === 'escuro'
-                ? { scale: 0.95, opacity: 0 }
+                ? { scale: 0.8, opacity: 0 }
                 : fase === 'aparece'
                 ? { scale: 1, opacity: 1 }
                 : { scale: 30, opacity: 0 }
@@ -65,14 +65,14 @@ export default function VRIntro({ onComplete }) {
                     scale: { duration: 2.4, ease: [0.76, 0, 0.24, 1] },
                     opacity: { duration: 2, ease: 'easeIn', delay: 0.4 },
                   }
-                : { duration: 1, ease: [0.22, 1, 0.36, 1] }
+                : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
             }
           >
             <img
               src={questImg}
-              alt="Meta Quest 3 — Visão interna"
-              className="w-full h-auto select-none"
-              style={{ minWidth: '100%' }}
+              alt="Meta Quest 3"
+              className="select-none"
+              style={{ width: '100%', minWidth: '100vw', height: 'auto' }}
               draggable={false}
             />
           </motion.div>
